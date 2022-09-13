@@ -26,4 +26,15 @@ class RoverShould {
         assertEquals("0:0:W", new Rover().execute("RRR"));
     }
 
+    @Test
+    void
+    turn_right_four_times() {
+        assertEquals("0:0:N", new Rover().execute("RRRR"));
+    }
+
+    @Test
+    void
+    turn_left_once() {
+        assertEquals("0:0:W", new Rover().execute("L"));
+    }
 }

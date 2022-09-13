@@ -3,7 +3,7 @@ public class Rover {
         char[] Compass = {'N', 'E', 'S', 'W'};
         char direction = 'N';
 
-        direction = Compass[commands.length()];
+        direction = Compass[commands.length() % 4];
 
         return "0:0:" + direction;
 
