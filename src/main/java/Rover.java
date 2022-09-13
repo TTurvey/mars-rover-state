@@ -4,22 +4,16 @@ public class Rover {
     public String execute(String commands) {
         char[] clockwiseCompass = {'N', 'E', 'S', 'W'};
         char[] antiClockwiseCompass = {'W', 'S', 'E', 'N'};
-
         char currentDirection = 'N';
 
         char[] moves = commands.toCharArray();
 
-        char newDirection;
-
         for(char move : moves) {
-            System.out.println(move);
             if (move == 'L') {
-                newDirection = turn(antiClockwiseCompass, currentDirection);
-                currentDirection = newDirection;
+                currentDirection = turn(antiClockwiseCompass, currentDirection);
             }
             if (move == 'R') {
-                newDirection = turn(clockwiseCompass, currentDirection);
-                currentDirection = newDirection;
+                currentDirection = turn(clockwiseCompass, currentDirection);
             }
         }
 
