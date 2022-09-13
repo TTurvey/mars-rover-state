@@ -2,29 +2,36 @@ import java.util.Arrays;
 
 public class Rover {
     public String execute(String commands) {
-        char[] compass = {'N', 'E', 'S', 'W'};
-        char direction = 'N';
+        char[] clockwiseCompass = {'N', 'E', 'S', 'W'};
+        char[] antiClockwiseCompass = {'W', 'S', 'E', 'N'};
+
+        char currentDirection = 'N';
 
         char[] moves = commands.toCharArray();
 
-        for(char instruction : moves) {
-            System.out.println(instruction);
-            if (instruction == 'L') {
-                direction = compass[CurrantIndexPosition(compass, direction) - 2];
-                System.out.println(direction);
+        char newDirection;
+
+        for(char move : moves) {
+            System.out.println(move);
+            if (move == 'L') {
+                newDirection = turn(antiClockwiseCompass, currentDirection);
+                currentDirection = newDirection;
             }
-            if (instruction == 'R') {
-                System.out.println("Before " + direction);
-                direction = compass[CurrantIndexPosition(compass, direction) + 1];
-                System.out.println("After " + direction);
+            if (move == 'R') {
+                newDirection = turn(clockwiseCompass, currentDirection);
+                currentDirection = newDirection;
             }
         }
 
-        return "0:0:" + direction;
+        return "0:0:" + currentDirection;
 
     }
 
-    private static int CurrantIndexPosition(char[] compass, char direction) {
-        return Arrays.asList(compass).indexOf(direction) + 1;
+    private static char turn(char[] compass, char currentDirection) {
+        int currentDirectionIndex = new String(compass).indexOf(currentDirection);
+        int newDirectionIndex = (currentDirectionIndex + 1) % 4;
+
+        return compass[newDirectionIndex];
     }
+
 }
